@@ -3,6 +3,16 @@ const router = express.Router();
 const wsaService = require("../services/wsa.service");
 const bcrypt = require("bcrypt")
 
+router.post("/user/login", async(req, res) => {
+  try {
+    const loginDetails = await wsaService.loginUser(req.body)
+    res.status(201).json(loginDetails)
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({error: "Failed to login user"})
+  }
+})
+
 router.post("/user/register", async (req, res) => {
   try {
 

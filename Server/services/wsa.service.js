@@ -1,4 +1,33 @@
+const { Sequelize } = require("sequelize");
 const db = require("../config/db.js");
+const op = Sequelize.Op;
+const operatorsAliases = {
+    $eq: op.eq,
+    $or: op.or,
+}
+
+
+const loginUser = async ({ UserEmail, UserPassword }) => {
+  try {
+    const loginResponse = await db.User.findOne({
+      where: {
+        [op.or]: [
+          { Email1: UserEmail },
+          { Email2: UserEmail },
+          { Email3: UserEmail },
+          { Email4: UserEmail }
+        ],
+        AccountPassword: UserPassword
+      }
+    });
+
+    return loginResponse;
+  } catch (error) {
+    console.log(error);
+    throw new Error("Failed to login user: " + error.message);
+  }
+};
+
 
 const createUser = async ({
   AccountName,
@@ -188,6 +217,7 @@ const deleteUser = async (accountId) => {
 };
 
 module.exports = {
+  loginUser,
   createUser,
   getUsers,
   createSodiumHypochloriteValues,

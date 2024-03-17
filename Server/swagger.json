@@ -395,6 +395,23 @@
           }
         }
       },
+      "LoginRequest": {
+        "type": "object",
+        "properties": {
+          "UserEmail": {
+            "type": "string"
+          },
+          "UserPassword": {
+            "type": "string"
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "response": "boolean"
+        }
+      },
       "UserResponse": {
         "type": "object",
         "properties": {
