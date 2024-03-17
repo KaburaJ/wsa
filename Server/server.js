@@ -1,12 +1,13 @@
 require("dotenv").config();
 require("./models/wsa.model").default
 const express = require("express");
-app.use("/", require("./controllers/wsa.controller"));
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./swagger.json')
 
 const app = express();
 const cors = require("cors");
+app.use("/", require("./controllers/wsa.controller"));
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
