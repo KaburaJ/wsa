@@ -21,7 +21,12 @@ const loginUser = async ({ UserEmail, UserPassword }) => {
       }
     });
 
-    return loginResponse;
+    console.log("login response", loginResponse);
+    if(loginResponse){
+      return UserEmail, UserPassword
+    }else{
+      return "Login failed"
+    }
   } catch (error) {
     console.log(error);
     throw new Error("Failed to login user: " + error.message);
