@@ -20,18 +20,14 @@ const loginUser = async ({ UserEmail, UserPassword }) => {
         AccountPassword: UserPassword
       }
     });
-
-    console.log("login response", loginResponse);
-    if(loginResponse){
-      return UserEmail, UserPassword
-    }else{
-      return "Login failed"
+    if (!loginResponse) {
+      throw new Error("Invalid email or password");
     }
+    return loginResponse; 
   } catch (error) {
-    console.log(error);
     throw new Error("Failed to login user: " + error.message);
   }
-};
+}
 
 
 const createUser = async ({
