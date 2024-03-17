@@ -1,15 +1,15 @@
 const { Sequelize } = require("sequelize");
 const db = require("../config/db.js");
+const bcrypt = require("bcrypt");
 const op = Sequelize.Op;
 const operatorsAliases = {
     $eq: op.eq,
     $or: op.or,
-}
-
+};
 
 const loginUser = async ({ UserEmail, UserPassword }) => {
   try {
-    const loginResponse = await db.User.findOne({
+    const user = await db.User.findOne({
       where: {
         [op.or]: [
           { Email1: UserEmail },
@@ -17,17 +17,24 @@ const loginUser = async ({ UserEmail, UserPassword }) => {
           { Email3: UserEmail },
           { Email4: UserEmail }
         ],
-        AccountPassword: UserPassword
       }
     });
-    if (!loginResponse) {
+
+    if (!user) {
       throw new Error("Invalid email or password");
     }
-    return loginResponse; 
+
+    const isPasswordValid = await bcrypt.compare(UserPassword, user.AccountPassword);
+    if (!isPasswordValid) {
+      throw new Error("Invalid email or password");
+    }
+
+    return user;
   } catch (error) {
     throw new Error("Failed to login user: " + error.message);
   }
-}
+};
+
 
 
 const createUser = async ({
