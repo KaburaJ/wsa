@@ -10,6 +10,35 @@
     }
   ],
   "paths": {
+    "/user/login": {
+      "post": {
+        "summary": "Login a new user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "User logged in",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Failed to login user"
+          }
+        }
+      }
+    },
     "/user/register": {
       "post": {
         "summary": "Register a new user",
