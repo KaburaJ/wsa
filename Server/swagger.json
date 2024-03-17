@@ -436,6 +436,9 @@
       "SodiumHypochloriteRequest": {
         "type": "object",
         "properties": {
+          "AccountName": {
+            "type": "string"
+          },
           "SodiumHypochloriteActualValue": {
             "type": "number"
           },
@@ -500,6 +503,9 @@
       "HCLRequest": {
         "type": "object",
         "properties": {
+          "AccountName": {
+            "type": "string"
+          },
           "HCLActualValue": {
             "type": "number"
           },
