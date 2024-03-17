@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt")
 
 router.post("/user/login", async(req, res) => {
   try {
+    console.log("login body", req.body);
     const loginDetails = await wsaService.loginUser(req.body)
     console.log("login details", loginDetails);
     res.status(201).json(loginDetails)
