@@ -526,6 +526,9 @@
           },
           "HCL_PH_mL": {
             "type": "number"
+          },
+          "SoftwareVersion": {
+            "type": "string"
           }
         }
       },
@@ -558,6 +561,9 @@
           },
           "HCL_PH_mL": {
             "type": "number"
+          },
+          "SoftwareVersion": {
+            "type": "string"
           }
         }
       },
